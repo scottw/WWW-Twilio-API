@@ -21,6 +21,7 @@ sub API_VERSION { '2008-08-01' }
 my %errors      = ();
 my %account_sid = ();
 my %auth_token  = ();
+my %api_version = ();
 
 sub new {
     my $class = shift;
@@ -29,8 +30,9 @@ sub new {
     my $self = bless \(my $ref), $class;
 
     $errors      {$self} = [ ];
-    $account_sid {$self} = $args{AccountSid} || '';
-    $auth_token  {$self} = $args{AuthToken}  || '';
+    $account_sid {$self} = $args{AccountSid}  || '';
+    $auth_token  {$self} = $args{AuthToken}   || '';
+    $api_version {$self} = $args{API_VERSION} || API_VERSION();
 
     return $self;
 }
@@ -63,7 +65,7 @@ sub _do_request {
 
     my $method = delete $args{METHOD};
 
-    my $url = API_URL() . '/' . API_VERSION();
+    my $url = API_URL() . '/' . $api_version{$self};
     my $api = delete $args{API};
     $url .= "/Accounts/" . $account_sid{$self};
     $url .= ( $api eq 'Accounts' ? '' : "/$api" );
@@ -141,20 +143,45 @@ WWW::Twilio::API - Perl extension for accessing Twilio's REST API
 
   use WWW::Twilio::API;
 
-  my $twilio = WWW::Twilio::API->new(AccountSid => 'AC712345...',
-                                     AuthToken  => '12345678...');
+  my $twilio = WWW::Twilio::API->new(AccountSid => 'AC12345...',
+                                     AuthToken  => '1234567...');
 
-  $response = $twilio->POST( Calls, %args );
+  ## make a phone call
+  $response = $twilio->POST( 'Calls',
+                             Caller => '1234567890',
+                             Called => '8905671234',
+                             Url    => 'http://domain.tld/send_twiml' );
+
   print $response->{xml};
-
 
 =head1 DESCRIPTION
 
+B<WWW::Twilio::API> aims to make connecting to and making REST calls
+on the Twilio API easy, reliable, and enjoyable.
 
+You should have ready access to Twilio's API documentation in order to
+use B<WWW::Twilio::API>.
+
+FIXME
+
+=head2 API CHANGES
+
+By default, all API calls are against the F<2008-08-01> API. If you
+need to call against a different API, you may pass it into the
+constructor:
+
+  $t = WWW::Twilio::API->new( %auth,
+                              API_VERSION => 'YYYY-MM-DD' );
+
+where 'YYYY-MM-DD' is the new API version.
+
+=head1 EXAMPLES
+
+FIXME
 
 =head1 SEE ALSO
 
-LWP(1)
+LWP(1), L<http://www.twilio.com/>
 
 =head1 AUTHOR
 
