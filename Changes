@@ -1,0 +1,6 @@
+Revision history for Perl extension WWW::Twilio::API.
+
+0.01  Thu Sep 10 10:03:49 2009
+	- original version; created by h2xs 1.23 with options
+		-AX WWW::Twilio::API
+
