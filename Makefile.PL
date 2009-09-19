@@ -1,12 +1,14 @@
-use 5.008008;
+use 5.008001;
 use ExtUtils::MakeMaker;
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
 WriteMakefile(
     NAME              => 'WWW::Twilio::API',
-    VERSION_FROM      => 'lib/WWW/Twilio/API.pm', # finds $VERSION
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
-    ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
+    VERSION_FROM      => 'lib/WWW/Twilio/API.pm',
+    PREREQ_PM         => { Crypt::SSLeay  => 0.57_01,
+                           LWP::UserAgent => 2.33,
+                           URI::Escape    => 3.28, },
+    ($] >= 5.005 ?
       (ABSTRACT_FROM  => 'lib/WWW/Twilio/API.pm', # retrieve abstract from module
-       AUTHOR         => 'Scott Wiersdorf <scott@apple.com>') : ()),
+       AUTHOR         => 'Scott Wiersdorf <scott@perlcode.org>') : ()),
 );

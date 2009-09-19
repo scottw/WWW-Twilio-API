@@ -4,7 +4,7 @@ use 5.008001;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.12';
 our $Debug   = 0;
 
 use Crypt::SSLeay ();
@@ -112,7 +112,7 @@ __END__
 
 =head1 NAME
 
-WWW::Twilio::API - Perl extension for accessing Twilio's REST API
+WWW::Twilio::API - Accessing Twilio's REST API with Perl
 
 =head1 SYNOPSIS
 
@@ -508,6 +508,33 @@ might want to hand it off to an XML parser:
 
 What you do with the results is up to you.
 
+Here are the (current) elements in the response:
+
+=over 4
+
+=item content
+
+Contains the response content (in XML or CSV or HTML if specified).
+
+=item code
+
+Contains the HTTP status code. You should check this after each call
+to make sure it's what you'd expect (according to the API). Most
+successful responses will be '200', but some are '204' or others.
+
+=item message
+
+A brief HTTP status message, corresponding to the status code. For 200
+codes, the message will be "OK". For "400" codes, the message will be
+"Bad Request" and so forth.
+
+For the curious, a complete list of HTTP status codes, messages and
+explanations may be found here:
+
+  http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+
+=back
+
 =head2 CSV and HTML content
 
 By default, results come back in XML and are stored in the response's
@@ -626,7 +653,8 @@ where 'YYYY-MM-DD' is the new API version.
 =head1 EXAMPLES
 
 There are plenty of examples strewn in the documentation above. If you
-need more, please see Twilio's own REST API documentation.
+need more, see the F<examples.pl> file with this distribution; also
+please see Twilio's own REST API documentation and TwiML documentation.
 
 =head1 SEE ALSO
 
@@ -634,14 +662,14 @@ LWP(1), L<http://www.twilio.com/>
 
 =head1 AUTHOR
 
-Scott Wiersdorf, E<lt>scott@apple.comE<gt>
+Scott Wiersdorf, E<lt>scott@perlcode.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
 Copyright (C) 2009 by Scott Wiersdorf
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.8 or,
+it under the same terms as Perl itself, either Perl version 5.8.1 or,
 at your option, any later version of Perl 5 you may have available.
 
 

@@ -14,7 +14,7 @@ my $action      = shift @ARGV || 'Calls';
 my $twilio = new WWW::Twilio::API( AccountSid => $account_sid,
                                    AuthToken  => $auth_token, );
 
-## view a list of calls
+## view a list of calls in CSV format
 if( $action eq 'Calls' ) {
     my $response = $twilio->GET('Calls.csv');
     print $response->{content};
