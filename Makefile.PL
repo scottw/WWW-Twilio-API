@@ -5,8 +5,8 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'WWW::Twilio::API',
     VERSION_FROM      => 'lib/WWW/Twilio/API.pm',
-    PREREQ_PM         => { Crypt::SSLeay  => 0.57_01,
-                           LWP::UserAgent => 2.033,
+    PREREQ_PM         => { Crypt::SSLeay  => 0.51,
+                           LWP::UserAgent => 2.030,
                            URI::Escape    => 3.28, },
     ($] >= 5.005 ?
       (ABSTRACT_FROM  => 'lib/WWW/Twilio/API.pm', # retrieve abstract from module
