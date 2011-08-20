@@ -3,18 +3,33 @@ use ExtUtils::MakeMaker;
 
 ## look for previously installed version
 COMPAT: {
-    ## FIXME: less lazy would mean checking the version
-    eval { chdir "/"; require "WWW::Twilio::API"; };
-    unless( $@ ) {
-        warn <<'_COMPAT_';
-I see you have previously installed WWW::Twilio::API. Be warned that
-if the previously installed version is 0.14 or earlier, the default
-Twilio API has changed from 2008-08-01 to 2010-04-01. It's likely your
-API calls will not work without some changes to your code if you
-upgrade. See the documentation for this module under "COMPATIBILITY
-NOTICE" for details and recommendations.
+    eval 'require WWW::Twilio::API';
+    last COMPAT if $@;
+
+    eval 'die "flatulence" if $WWW::Twilio::API::VERSION < 0.15';
+    last COMPAT unless $@;
+
+    sleep 1;
+    warn <<'_COMPAT_';
+======================================================================
+
+        *** WARNING *** ACHTUNG *** CUIDADO ***
+
+It looks like you have previously installed a version of
+WWW::Twilio::API which is incompatible with this current release.
+
+You have two options:
+
+1) don't upgrade unless you need a new feature (note that 0.15
+   contains no code changes other than the default API).
+
+2) upgrade using one of the two methods found in the documentation
+   under "COMPATIBILITY NOTICE".
+
+Thanks for using WWW::Twilio::API!
+
+======================================================================
 _COMPAT_
-    }
 }
 
 WriteMakefile(
