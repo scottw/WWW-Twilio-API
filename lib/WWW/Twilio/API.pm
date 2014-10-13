@@ -132,6 +132,8 @@ sub DESTROY {
 1;
 __END__
 
+=encoding utf8
+
 =head1 NAME
 
 WWW::Twilio::API - Accessing Twilio's REST API with Perl
@@ -616,6 +618,11 @@ L</"COMPATIBILITY"> section at the top of this documentation.
 No default. This is a code reference you may pass in. The code
 reference will receive the internal LWP::UserAgent object immediately
 after it is created so you can set up proxies, timeouts, etc.
+
+=item B<utf8>
+
+If set to a true value, will use B<URI::Escape>'s C<uri_escape_utf8>
+instead of C<uri_escape>.
 
 =back
 
