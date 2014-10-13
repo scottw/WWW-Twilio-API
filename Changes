@@ -1,5 +1,9 @@
 Revision history for Perl extension WWW::Twilio::API.
 
+r24 | scott | 2014-10-13 10:24:23 -0600 (Mon, 13 Oct 2014) | 1 line
+
+- document utf8 argument
+------------------------------------------------------------------------
 r23 | scott | 2014-10-13 10:17:31 -0600 (Mon, 13 Oct 2014) | 1 line
 
 - version bump: 0.18
