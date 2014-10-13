@@ -7,9 +7,8 @@ use warnings;
 our $VERSION = '0.17';
 our $Debug   = 0;
 
-use Crypt::SSLeay ();
 use LWP::UserAgent ();
-use URI::Escape 'uri_escape';
+use URI::Escape qw(uri_escape uri_escape_utf8);
 use Carp 'croak';
 
 sub API_URL     { 'https://api.twilio.com' }
@@ -22,6 +21,7 @@ my %account_sid  = ();
 my %auth_token   = ();
 my %api_version  = ();
 my %lwp_callback = ();
+my %utf8         = ();
 
 sub new {
     my $class = shift;
@@ -33,6 +33,7 @@ sub new {
     $auth_token   {$self} = $args{AuthToken}    || '';
     $api_version  {$self} = $args{API_VERSION}  || API_VERSION();
     $lwp_callback {$self} = $args{LWP_Callback} || undef;
+    $utf8         {$self} = $args{utf8}         || undef;
 
     return $self;
 }
@@ -78,7 +79,7 @@ sub _do_request {
 
     my $content = '';
     if( keys %args ) {
-        $content = _build_content( %args );
+        $content = $self->_build_content( %args );
 
         if( $method eq 'GET' ) {
             $url .= '?' . $content;
@@ -103,12 +104,15 @@ sub _do_request {
 
 ## builds a string suitable for LWP's content() method
 sub _build_content {
+    my $self = shift;
     my %args = @_;
+
+    my $escape_method = $utf8{$self} ? \&uri_escape_utf8 : \&uri_escape;
 
     my @args = ();
     for my $key ( keys %args ) {
         $args{$key} = ( defined $args{$key} ? $args{$key} : '' );
-        push @args, uri_escape($key) . '=' . uri_escape($args{$key});
+        push @args, &$escape_method($key) . '=' . &$escape_method($args{$key});
     }
 
     return join('&', @args) || '';
