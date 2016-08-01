@@ -4,7 +4,7 @@ use 5.008001;
 use strict;
 use warnings;
 
-our $VERSION = '0.18';
+our $VERSION = '0.19';
 our $Debug   = 0;
 
 use LWP::UserAgent ();
@@ -124,6 +124,8 @@ sub DESTROY {
     delete $account_sid {$self};
     delete $auth_token  {$self};
     delete $api_version {$self};
+    delete $lwp_callback{$self};
+    delete $utf8        {$self};
 
     my $super = $self->can("SUPER::DESTROY");
     goto &$super if $super;
