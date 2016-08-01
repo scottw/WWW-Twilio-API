@@ -1,5 +1,33 @@
 Revision history for Perl extension WWW::Twilio::API.
 
+release: 0.19
+
+commit af21199241a128bcde144700bb7942648a8902ab
+Author: Scott Wiersdorf <scott@perlcode.org>
+Date:   Mon Aug 1 14:13:27 2016 -0600
+
+    allow multiple keys
+
+commit e0e58049b9397cbff5cca5a6e6ad72d97c0ebdac
+Author: Scott Wiersdorf <scott@perlcode.org>
+Date:   Mon Aug 1 11:19:52 2016 -0600
+
+    indent code sections
+
+commit b0f3e88d7ba121aff5a05cec6da139f12f93592e
+Author: Scott Wiersdorf <scott@perlcode.org>
+Date:   Mon Aug 1 11:18:51 2016 -0600
+
+    version bump
+
+commit b6ce5d7eb23c49283e02c272e573b4422e57349b
+Author: Scott Wiersdorf <scott@perlcode.org>
+Date:   Mon Aug 1 11:06:01 2016 -0600
+
+    fix RT #115706: clean up lwp_callback and utf8 object attributes at object destruction time (Nigel Gregoire)
+
+release: 0.18
+
 r24 | scott | 2014-10-13 10:24:23 -0600 (Mon, 13 Oct 2014) | 1 line
 
 - document utf8 argument
