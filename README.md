@@ -8,47 +8,47 @@ the API without any changes whatsoever.
 
 Make any Twilio API call in two lines of code:
 
-  ## make a Twilio object
-  my $twilio = new WWW::Twilio::API( AccountSid => '(your sid here)',
+    ## make a Twilio object
+    my $twilio = new WWW::Twilio::API( AccountSid => '(your sid here)',
                                      AuthToken  => '(your auth token here)' );
 
-  ## retrieve calls I've made
-  $response = $twilio->GET('Calls');
+    ## retrieve calls I've made
+    $response = $twilio->GET('Calls');
 
-  ## place a new call to 801-123-5555 from 403-123-1234
-  $response = $twilio->POST('Calls',
-                            From => '4031231234',
-                            To   => '8011235555',
-                            Url  => 'http://perlcode.org/cgi-bin/twilio');
+    ## place a new call to 801-123-5555 from 403-123-1234
+    $response = $twilio->POST('Calls',
+                              From => '4031231234',
+                              To   => '8011235555',
+                              Url  => 'http://perlcode.org/cgi-bin/twilio');
 
-  ## see account information
-  $response = $twilio->GET('Accounts');
+    ## see account information
+    $response = $twilio->GET('Accounts');
 
-  ## see details for a specific call
-  $response = $twilio->GET('Calls/CA42ed11f93dc08b952027ffbc406d0868');
+    ## see details for a specific call
+    $response = $twilio->GET('Calls/CA42ed11f93dc08b952027ffbc406d0868');
 
-  ## send an SMS message
-  $response = $twilio->POST( 'SMS/Messages',
-                             From => $from,
-                             To   => $to,
-                             Body => $body );
+    ## send an SMS message
+    $response = $twilio->POST( 'SMS/Messages',
+                               From => $from,
+                               To   => $to,
+                               Body => $body );
 
 INSTALLATION
 
 To install this module type the following:
 
-   perl Makefile.PL
-   make
-   make test
-   make install
+    perl Makefile.PL
+    make
+    make test
+    make install
 
 DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-  LWP::UserAgent
-  Crypt::SSLeay
-  URI::Escape
+    LWP::UserAgent
+    Crypt::SSLeay
+    URI::Escape
 
 COPYRIGHT AND LICENCE
 
