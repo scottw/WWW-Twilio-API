@@ -10,6 +10,7 @@ our $Debug   = 0;
 use LWP::UserAgent ();
 use URI::Escape qw(uri_escape uri_escape_utf8);
 use Carp 'croak';
+use List::Util 'pairs';
 
 sub API_URL     { 'https://api.twilio.com' }
 sub API_VERSION { '2010-04-01' }
@@ -105,14 +106,14 @@ sub _do_request {
 ## builds a string suitable for LWP's content() method
 sub _build_content {
     my $self = shift;
-    my %args = @_;
 
     my $escape_method = $utf8{$self} ? \&uri_escape_utf8 : \&uri_escape;
 
     my @args = ();
-    for my $key ( keys %args ) {
-        $args{$key} = ( defined $args{$key} ? $args{$key} : '' );
-        push @args, &$escape_method($key) . '=' . &$escape_method($args{$key});
+    for my $pair (pairs @_) {
+        my ($key, $val) = @$pair;
+
+        push @args, &$escape_method($key) . '=' . &$escape_method($val // '');
     }
 
     return join('&', @args) || '';
