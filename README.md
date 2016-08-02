@@ -1,4 +1,4 @@
-WWW-Twilio-API version 0.19
+WWW-Twilio-API version 0.20
 ===========================
 
 WWW::Twilio::API is a flexible, extensible API for Twilio written in

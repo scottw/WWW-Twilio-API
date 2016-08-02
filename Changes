@@ -1,5 +1,13 @@
 Revision history for Perl extension WWW::Twilio::API.
 
+release: 0.20
+
+commit 485849c0e4eaac54454fc31f48e910d6f18eac50
+Author: Scott Wiersdorf <scott@perlcode.org>
+Date:   Mon Aug 1 23:34:26 2016 -0600
+
+    set minimum Perl version to 5.10.1; minimum List::Util to 1.29
+
 release: 0.19
 
 commit af21199241a128bcde144700bb7942648a8902ab
