@@ -1,16 +1,16 @@
 package WWW::Twilio::API;
 
-use 5.008001;
+use 5.010001;
 use strict;
 use warnings;
 
-our $VERSION = '0.19';
+our $VERSION = '0.20';
 our $Debug   = 0;
 
 use LWP::UserAgent ();
 use URI::Escape qw(uri_escape uri_escape_utf8);
 use Carp 'croak';
-use List::Util 'pairs';
+use List::Util '1.29', 'pairs';
 
 sub API_URL     { 'https://api.twilio.com' }
 sub API_VERSION { '2010-04-01' }
