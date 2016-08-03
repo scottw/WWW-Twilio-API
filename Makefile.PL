@@ -1,4 +1,4 @@
-use 5.008001;
+use 5.010001;
 use ExtUtils::MakeMaker;
 
 ## look for previously installed version
@@ -37,7 +37,8 @@ WriteMakefile(
     VERSION_FROM      => 'lib/WWW/Twilio/API.pm',
     PREREQ_PM         => { Crypt::SSLeay  => 0.51,  ## FIXME: should be IO::Socket::SSL 1.49
                            LWP::UserAgent => 2.030,
-                           URI::Escape    => 3.28, },
+                           URI::Escape    => 3.28,
+                           List::Util     => 1.29, },
     ($] >= 5.005 ?
       (ABSTRACT_FROM  => 'lib/WWW/Twilio/API.pm', # retrieve abstract from module
        AUTHOR         => 'Scott Wiersdorf <scott@perlcode.org>') : ()),
