@@ -35,8 +35,8 @@ _COMPAT_
 WriteMakefile(
     NAME              => 'WWW::Twilio::API',
     VERSION_FROM      => 'lib/WWW/Twilio/API.pm',
-    PREREQ_PM         => { Crypt::SSLeay  => 0.51,  ## FIXME: should be IO::Socket::SSL 1.49
-                           LWP::UserAgent => 2.030,
+    PREREQ_PM         => { LWP::UserAgent => 2.030,
+                           LWP::Protocol::https => 0,
                            URI::Escape    => 3.28,
                            List::Util     => 1.29, },
     ($] >= 5.005 ?
