@@ -1,5 +1,13 @@
 Revision history for Perl extension WWW::Twilio::API.
 
+release: 0.21
+
+commit 5b4c5d9876e0d08a3fb0d79c1f65682f598d77af
+Author: Scott Wiersdorf <scott@perlcode.org>
+Date:   Tue Sep 6 16:29:58 2016 -0600
+
+    remove Crypt::SSLeay build dependency (rt#96683)
+
 release: 0.20
 
 commit 485849c0e4eaac54454fc31f48e910d6f18eac50
